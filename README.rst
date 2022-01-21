@@ -25,13 +25,10 @@ You can use this extension to render a JSON or YAML OpenAPI spec. The usage is:
 
 ``.. simpleopenapi:: _static/specs/openapi.yml``
 
-.. admonition:: Many types of admonitions
-   :class: note
-
-   Notice that the only parameter is the path to the OpenAPI spec
+Notice that the only parameter is the path to the OpenAPI spec.
 
 This package will render the API routes, methods, path parameters, query
-parameters and each route's OAuth2 scopes.
+parameters and each route's expected OAuth2 scopes.
 
 Examples
 ^^^^^^^^
@@ -115,4 +112,4 @@ This spec:
 Would render as:
 
 .. image:: spec_rendered.png
-  :width: 400
+  :width: 800
