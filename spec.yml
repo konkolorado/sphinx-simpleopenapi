@@ -1,0 +1,71 @@
+openapi: 3.0.0
+info:
+  title: OpenAPI Spec
+  description: This is an OpenAPI spec
+
+host: example.org
+basePath: /hello_world
+schemes:
+  - https
+
+paths:
+  /{action_id}/release:
+    parameters:
+      - name: pagination_token2
+        required: false
+        in: query
+        description: >-
+          An secondary token used to iterate through results
+        schema:
+          type: string
+      - name: action_id
+        required: true
+        in: path
+        description: |
+          The ID for the Action
+        schema:
+          type: string
+      - name: pagination_token
+        required: false
+        in: query
+        description: >-
+          An opaque token used to iterate through pages
+        schema:
+          type: string
+    post:
+      description: |
+        Remove state from the server
+      tags:
+        - /release
+      security:
+        - bearer_token: ["https://example.org/scopes/your_scope_here"]
+      responses:
+        200:
+          description: Release successful
+        401:
+          description: Authorization header missing or invalid
+        403:
+          description: Not authorized
+        404:
+          description: No action with the provided action_id is known
+        409:
+          description: The action cannot be released
+
+security:
+  - bearer_token: []
+
+components:
+  securitySchemes:
+    bearer_token:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: "https://example.org/oauth2"
+          scopes:
+            https://example.org/scopes/{provider_scope_name}: Authorization to perform operations
+        authorizationCode:
+          authorizationUrl: "https://example.org/oauth2"
+          tokenUrl: "https://example.org/oauth2"
+          refreshUrl: "https://example.org/oauth2"
+          scopes:
+            https://example.org/scopes/{provider_scope_name}: Authorization to perform operations
